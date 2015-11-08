@@ -1,0 +1,29 @@
+.app-header {
+  background: #f3f3f3;
+}
+
+.app-header a {
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: bold;
+  display: block;
+}
+
+.app-header a:link, a:visited {
+  color: #333333;
+}
+
+.app-header a:hover, a:active {
+  color: #4C9ED9;
+}
+
+.x-btn-arrow-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-small{
+  padding-right: 0px;
+}
+
+.x-btn-icon-left > .x-btn-icon-el-default-small, .x-btn-icon-right > .x-btn-icon-el-default-small{
+  width: 20px;
+}
+.x-btn-icon-el-default-small{
+  height: 20px;
+}
