@@ -12,14 +12,17 @@ Ext.define('ITPAR.view.appheader.userbutton.UserButtonController', {
 
     },
 
-	goToWelcomeView: function(){
-		localStorage.removeItem('ITPARLoggedIn');
+	loginOut: function(){
+		//localStorage.removeItem('ITPARLoggedIn');
+		User_Info.Logined = false;
+		Ext.util.Cookies.clear('id');
+		Ext.util.Cookies.clear('password');
 
 		var main = Ext.getCmp('appMain');
 		main.destroy();
 
 		Ext.create({
-			xtype: 'welcome'
+			xtype: 'app-main'
 		});
 	}
 });
