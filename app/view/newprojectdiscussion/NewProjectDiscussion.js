@@ -2,7 +2,7 @@
  * Created by wzq on 15-10-22.
  */
 Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
-    extend: 'Ext.Container',
+    extend: 'Ext.form.Panel',
 
     requires: [
 	    'Ext.form.Panel',
@@ -39,11 +39,11 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 	    items: [{
 		    xtype: 'textfield',
 		    fieldLabel: '项目名称',
-		    name: 'projectName'
+		    name: 'title'
 	    },{
 		    xtype: 'textarea',
 		    fieldLabel: '项目描述',
-		    name: 'projectDescription',
+		    name: 'abstractt',
 		    height: 150
 	    },{
 		    xtype: 'radiogroup',
@@ -65,6 +65,7 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 	    },{
 		    xtype: 'textarea',
 		    reference: 'someIdTextarea',
+		    name: 'grantt',
 			margin: '0 0 0 105',
 		    disabled: true,
 		    emptyText: '授权用户的ID号,多个用户用空格分开'
@@ -74,11 +75,14 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 	    buttons: [{
 		    text: '提交',
 		    margin: '60 30 0 0',
-		    scope: this
+		    scope: this,
+		    listeners: {
+			    click: 'newProjectDiscussionSubmit'
+		    }
 	    },{
 		    text: '取消',
 		    scope: this
-	    }],
+	    }]
 
     }]
 });

@@ -29,6 +29,8 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 	title: '新建项目展示',
 
     items: [{
+	    html: '<h1  style="text-align:center">新建项目展示</h1>'
+    },{
         xtype: 'form',
 	    title: '基本信息',
 
@@ -38,6 +40,9 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 		    align: 'stretch'
 	    },
 
+	    defaults: {
+		    margin: '10 0 0 10'
+	    },
 	    items: [{
 		    xtype: 'textfield',
 		    fieldLabel: '项目名称',
@@ -68,7 +73,7 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 		    xtype: 'textarea',
 		    reference: 'someIdTextarea',
 		    height:　'40',
-		    margin: '0 0 0 105',
+		    margin: '0 0 0 115',
 		    disabled: true,
 		    emptyText: '授权用户的ID号,多个用户用空格分开'
 	    }],
@@ -85,6 +90,9 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 		    align: 'stretch'
 	    },
 
+	    defaults: {
+		    margin: '10 0 0 10'
+	    },
 	    items: [{
 		    xtype: 'textarea',
 		    fieldLabel: '项目详细信息'

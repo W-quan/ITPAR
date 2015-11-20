@@ -5,11 +5,12 @@ Ext.define('ITPAR.view.register.Register', {
     extend: 'Ext.form.Panel',
 
     requires: [
-        'Ext.button.Button',
-        'Ext.container.ButtonGroup',
-        'Ext.layout.container.VBox',
-        'ITPAR.view.register.RegisterController',
-        'ITPAR.view.register.RegisterModel'
+	    'Ext.button.Button',
+	    'Ext.container.ButtonGroup',
+	    'Ext.form.field.File',
+	    'Ext.layout.container.VBox',
+	    'ITPAR.view.register.RegisterController',
+	    'ITPAR.view.register.RegisterModel'
     ],
 
     xtype: 'register',
@@ -26,48 +27,60 @@ Ext.define('ITPAR.view.register.Register', {
     },
 
     width: 300,
-    //margin: '10 170 280 20',
     title: '&nbsp;&nbsp;&nbsp;注册',
-    reference: 'form',
+	//titleAlign: 'center',
+    id: 'registerPanel',
 
     frame: true,
     style: {
-        //padding: '10',
-        //fontsize: '14px',
         boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)'
     },
 
     defaultType: 'textfield',
-    default: {
+    defaults: {
         height: '25px',
-        allowBlank: false
+	    width: 300,
+	    margin: '10 0 10 0'
     },
 
     items: [{
-        name: 'username',
-        width: '250px',
-        margin: '20 10 10 20',
-        emptyText: '用户名'
+        name: 'name',
+	    fieldLabel: '用户名',
+	    allowBlank: false,
+	    margin: '30 0 10 0'
+        //emptyText: '用户名'
     }, {
         name: 'password',
+	    fieldLabel: '密码',
         inputType: 'password',
-        emptyText: '密码',
-        width: '250px',
-        margin: '10 10 10 20'
+	    allowBlank: false
     }, {
         name: 'email',
-        inputType: 'email',
-        emptyText: '邮箱',
-        width: '250px',
-        margin: '10 10 10 20'
+	    fieldLabel: '邮箱地址',
+        inputType: 'email'
+	    //allowBlank: false
     }, {
+	    name: 'mobile',
+	    fieldLabel: '手机号码'
+    },{
+	    name: 'qq',
+	    fieldLabel: 'QQ'
+    },{
+	    name: 'micromessage',
+	    fieldLabel: '微信'
+    },{
+	    xtype: 'fileuploadfield',
+	    name: 'photo',
+	    fieldLabel: '头像',
+	    buttonText: '选择'
+    },{
         xtype: 'buttongroup',
         columns: 2,
         items: [{
             xtype: 'button',
             text: '重置',
             width: 60,
-            margin: '00 10 10 00',
+            margin: '00 10 10 50',
             handler: function () {
                 this.up('form').getForm().reset();
             }
@@ -76,9 +89,9 @@ Ext.define('ITPAR.view.register.Register', {
             text: '注册',
             formBind: true,
             width: 60,
-            margin: '00 10 00 20',
+            margin: '00 10 00 30',
             listeners: {
-                click: 'onRegisterClick'
+                click: 'onRegisterSubmit'
             }
         }]
     }]

@@ -27,9 +27,16 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButton', {
 	//arrowAlign: 'right',
 
 	menu:　[{
-		text:　'新建项目沟通'
+		text:　'新建项目沟通',
+		listeners: {
+			click: 'newProjectDiscussion'
+		}
+
 	},{
 		text:　'新建项目展示',
-	}],
+		listeners: {
+			click: 'newProjectShow'
+		}
+	}]
 
 });

@@ -19,7 +19,7 @@ Ext.define('ITPAR.view.projectshow.ProjectShowController', {
 			methods: 'POST',
 			success: function(response, opts) {
 				var data = Ext.decode(response.responseText);
-				console.log(data);
+				//console.log(data);
 				projectshow.tpl.overwrite(projectshow.body, data);
 				projectshow.unmask();
 			},

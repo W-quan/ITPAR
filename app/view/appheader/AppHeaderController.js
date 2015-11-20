@@ -19,9 +19,10 @@ Ext.define('ITPAR.view.appheader.AppHeaderController', {
     },
 
 	addButton: function() {
-		var loggedIn = localStorage.getItem("ITPARLoggedIn");
-		var headerPanel = Ext.getCmp('HeaderPanel');
-		if(loggedIn == null){
+		//var loggedIn = localStorage.getItem("ITPARLoggedIn");
+		var loggedIn = User_Info.Logined;
+		var headerPanel = this.getView();
+		if(loggedIn == false){
 			headerPanel.add({xtype: 'registerbutton'});
 			headerPanel.add({xtype: 'loginbutton'});
 		} else{

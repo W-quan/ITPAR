@@ -4,6 +4,10 @@
 Ext.define('ITPAR.store.ProjectDiscussionIssuesTreeStore', {
 	extend: 'Ext.data.TreeStore',
 
-	model: 'ITPAR.model.ProjectDiscussionIssuesModel'
+	model: 'ITPAR.model.ProjectDiscussionIssuesModel',
+
+	config: {
+		discuss: null
+	}
 
 });

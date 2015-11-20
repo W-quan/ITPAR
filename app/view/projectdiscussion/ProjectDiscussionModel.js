@@ -18,6 +18,6 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussionModel', {
     },
 
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+
     }
 });

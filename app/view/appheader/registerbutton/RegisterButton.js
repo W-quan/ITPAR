@@ -21,6 +21,6 @@ Ext.define('ITPAR.view.appheader.registerbutton.RegisterButton', {
 	width: '60px',
 	text: '注册',
 	listeners: {
-		click: 'goToWelcomeView'
+		click: 'toRegisterView'
 	}
 });

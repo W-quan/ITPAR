@@ -21,6 +21,6 @@ Ext.define('ITPAR.view.appheader.loginbutton.LoginButton', {
 	width: '60px',
 	text: '登陆',
 	listeners: {
-		click: 'goToWelcomeView'
+		click: 'ToLoginView'
 	}
 });

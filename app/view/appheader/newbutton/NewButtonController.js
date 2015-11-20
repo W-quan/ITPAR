@@ -10,5 +10,21 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButtonController', {
      */
     init: function() {
 
-    }
+    },
+
+	newProjectDiscussion: function () {
+		var centerPanel = Ext.getCmp('center-tabpanel');
+		var tab = centerPanel.add({
+			xtype: 'newprojectdiscussion'
+		});
+		centerPanel.setActiveTab(tab);
+	},
+
+	newProjectShow: function(){
+		var centerPanel = Ext.getCmp('center-tabpanel');
+		var tab = centerPanel.add({
+			xtype: 'newprojectshow'
+		});
+		centerPanel.setActiveTab(tab);
+	}
 });

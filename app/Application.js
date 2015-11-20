@@ -4,44 +4,81 @@
  * initialization details.
  */
 Ext.define('ITPAR.Application', {
-    extend: 'Ext.app.Application',
-    
-    name: 'ITPAR',
+	extend: 'Ext.app.Application',
 
-    stores: [
-        // TODO: add global / shared stores here
-    ],
+	name: 'ITPAR',
+
+	stores: [
+		// TODO: add global / shared stores here
+	],
 
 	views: [
 		'ITPAR.view.login.Login',
 		'ITPAR.view.main.Main',
-        'ITPAR.view.welcome.Welcome'
+		'ITPAR.view.welcome.Welcome'
 	],
 
-    launch: function () {
-        // TODO - Launch the application
-        // It's important to note that this type of application could use
-        // any type of storage, i.e., Cookies, LocalStorage, etc.
-        var loggedIn;
+	launch: function () {
+		// TODO - Launch the application
+		var id = Ext.util.Cookies.get('id');
+		var password = Ext.util.Cookies.get('password');
+		if (id != null && password != null) {
+			this.login(id, password);
+		}
 
-        // Check to see the current value of the localStorage key
-        loggedIn = localStorage.getItem("ITPARLoggedIn");
+		Ext.create({
+			xtype: 'app-main'
+		});
+	},
 
-        // This ternary operator determines the value of the TutorialLoggedIn key.
-        // If TutorialLoggedIn isn't true, we display the login window,
-        // otherwise, we display the main view
-        Ext.create({
-            xtype: loggedIn ? 'app-main' : 'welcome'
-        });
-    },
+	login: function (id, password) {
+		Ext.Ajax.request({
+			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			method: 'POST',
+			params: {
+				type: '4',
+				id: id,
+				password: password
+			},
+			async: false,
 
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+			success: function (response, opts) {
+				var data = Ext.decode(response.responseText);
+				User_Info.Logined = true;
+				User_Info.id = data.user.id;
+				User_Info.name = data.user.name;
+				User_Info.mobile = data.user.mobile;
+				User_Info.email = data.user.email;
+				User_Info.qq = data.user.qq;
+				User_Info.micromessage = data.user.micromessage;
+				User_Info.photo = data.user.photo;
+			},
+
+			failure: function (response, opts) {
+			}
+		});
+	},
+
+	onAppUpdate: function () {
+		Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+			function (choice) {
+				if (choice === 'yes') {
+					window.location.reload();
+				}
+			}
+		);
+	}
 });
+
+//保存登陆用户信息
+var User_Info = {
+	Logined: false,
+	id: '',
+	name: '',
+	mobile: '',
+	email: '',
+	qq: '',
+	micromessage: '',
+	photo: ''
+};
+

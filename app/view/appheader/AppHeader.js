@@ -5,7 +5,6 @@ Ext.define('ITPAR.view.appheader.AppHeader', {
     extend: 'Ext.panel.Panel',
 
     requires: [
-        'Ext.button.Button',
         'Ext.form.field.Text',
         'Ext.layout.container.HBox',
         'ITPAR.view.appheader.AppHeaderController',

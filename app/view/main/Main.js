@@ -1,25 +1,7 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "mainView" property. That setting automatically applies the "viewport"
- * plugin causing this view to become the body element (i.e., the viewport).
- */
 Ext.define('ITPAR.view.main.Main', {
 	extend: 'Ext.container.Container',
 	xtype: 'app-main',
 	id: 'appMain',
-
-	requires: [
-		'Ext.layout.container.Border',
-		'Ext.plugin.Viewport',
-		'Ext.tab.Panel',
-		'Ext.tree.Panel',
-		'ITPAR.store.NavTreeStore',
-		'ITPAR.store.ProjectDiscussionIssuesTreeStore',
-		'ITPAR.view.appheader.AppHeader',
-		'ITPAR.view.footer.Footer',
-		'ITPAR.view.main.MainController',
-		'ITPAR.view.main.MainModel'
-	],
 
 	controller: 'main',
 	viewModel: 'main',
@@ -62,7 +44,12 @@ Ext.define('ITPAR.view.main.Main', {
 		listeners: {
 			//select: 'onNavTreeItemClick',
 			beforeexpand: 'hiddenIssuesTree',
-			itemclick: 'onNavTreeItemClick'
+			itemclick: 'onNavTreeItemClick',
+			beforedestroy: function(){
+				var NavTreepanel = Ext.getCmp('NavTreePanel');
+				var stroe = NavTreepanel.getStore();
+				stroe.removeAll();
+			}
 		}
 	}, {
 		region: 'center',
@@ -104,9 +91,14 @@ Ext.define('ITPAR.view.main.Main', {
 		xtype: 'treepanel',
 		reference: 'ProjectDiscussionIssuesTree',
 		id: 'ProjectDiscussionIssuesTree',
-		store: Ext.create('ITPAR.store.ProjectDiscussionIssuesTreeStore'),
 		useArrows: true,
-		rootVisible: false
+		rootVisible: false,
+
+		listeners: {
+			beforeitemexpand: 'issuesItemExpand',
+			itemclick: 'issuesItemClick'
+		}
+
 	}, {
 		region: 'south',
 		xtype: 'footer',
