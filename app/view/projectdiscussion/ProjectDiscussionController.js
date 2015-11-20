@@ -40,6 +40,8 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussionController', {
 				console.log(data);
 
 				projectdiscussion.add({
+					region: 'north',
+					margin: '10 10 10 10',
 					html: '<h1  style="text-align:center">主题详情</h1>' +
 							'<p style="text-indent:2em"> '+ data.topics.abstractt+ '</p>'
 				});
@@ -56,7 +58,10 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussionController', {
 			xtype: 'docgrids',
 			config: {
 				discuss: projectdiscussion.config.discuss
-			}
+			},
+
+			region: 'south',
+			margin: '10 10 10 10'
 		});
 
 	}

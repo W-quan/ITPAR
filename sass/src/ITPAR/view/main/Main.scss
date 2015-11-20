@@ -81,3 +81,12 @@
 //    top: 30px;
 //    right: -24px;
 //}
+
+
+.x-panel-header-title-default > .x-title-text-default::after{
+  content: ""
+}
+
+body.x-border-layout-ct, div.x-border-layout-ct{
+  background-color: #FFFFFF;
+}
