@@ -95,8 +95,9 @@ Ext.define('ITPAR.view.main.Main', {
 		rootVisible: false,
 
 		listeners: {
-			beforeitemexpand: 'issuesItemExpand',
-			itemclick: 'issuesItemClick'
+			beforeitemexpand: 'loadIssuesTreeChildNode',
+			itemclick: 'loadTopicAbstract',
+			select: 'addMenuToNewButton'
 		}
 
 	}, {

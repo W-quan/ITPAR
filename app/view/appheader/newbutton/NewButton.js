@@ -10,6 +10,7 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButton', {
     ],
 
     xtype: 'newbutton',
+	id: 'appHeader_newbutton',
 
     viewModel: {
         type: 'newbutton'

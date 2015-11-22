@@ -2,7 +2,7 @@
  * Created by wzq on 15-10-22.
  */
 Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.container.Container',
 
     requires: [
 	    'Ext.form.Panel',

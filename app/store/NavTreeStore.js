@@ -17,18 +17,4 @@ Ext.define('ITPAR.store.NavTreeStore', {
 			}
 		}
 	}
-
-	//proxy: {
-	//	type: 'ajax',
-	//	url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
-	//	extraParams: {type: 1},
-	//	actionMethods: {create: 'POST', read: 'POST', update: 'POST', destroy: 'POST'}
-	//}
-	//root: {
-	//	text: '信息技术产学研协同工作平台',
-	//	id: '-2',
-	//	expanded: true
-	//},
-
-
 });

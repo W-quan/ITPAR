@@ -9,5 +9,10 @@ Ext.define('ITPAR.view.projectdiscussion.docgrids.docGridsController', {
 		docStore.proxy.extraParams.discuss = docgrids.config.discuss;
 		docStore.load();
 		docgrids.setStore(docStore);
+	},
+
+	docDownload: function (grid, rowIndex, colIndex) {
+		var docId = grid.getStore().getAt(rowIndex).get('id');
+		Ext.Msg.alert('Download');
 	}
 });

@@ -20,6 +20,9 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 		discuss: undefined
 	},
 
+	frame: true,
+	style: 'border-color: #cecece',
+
 	tools: [{
 		xtype: 'button',
 		text: '发布新文档',
@@ -46,9 +49,22 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 				icon: 'resources/images/download_icon.png',
 				iconCls: 'array-grid-sell-col',
 				tooltip: '点击下载',
+
 				handler: function (grid, rowIndex, colIndex) {
-					//var rec = grid.getStore().getAt(rowIndex);
-					Ext.Msg.alert('Download');
+					var docId = grid.getStore().getAt(rowIndex).get('id');
+
+					var form = Ext.create('Ext.form.Panel', {
+						standardSubmit: true,
+						url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+						method: 'POST'
+					});
+
+					form.submit({
+						params: {
+							type: 10,
+							doc: docId
+						}
+					});
 				}
 			}]
 		}

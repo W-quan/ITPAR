@@ -9,25 +9,36 @@ Ext.define('ITPAR.view.main.MainController', {
 	],
 
 	onNavTreeItemClick: function(sender, record, item, index, e, eOpts){
-		if(record.parentNode.id == -1){
-			this.projectShow(record);
-
-		}else if(record.parentNode.id == -2){
-			//this.addProjectDiscussionIssuesTree();
-			this.projectDiscussion(record);
-
-		}else if(record.parentNode.id == -3){
-
-			this.myProject();
+		var store = Ext.getCmp('NavTreePanel').getStore();
+		switch (record.parentNode.get('id')){
+			case -1:
+				this.projectShow(record);
+				break;
+			case -2:
+				this.projectDiscussion(record);
+				break;
+			case -3:
+				this.myProject();
+				break;
 		}
     },
 
+	addMenuToNewButton: function(){
+		var newbutton = Ext.getCmp('appHeader_newbutton');
+		newbutton.getMenu().add({
+			text: '新建子主题',
+			listeners: {
+				click: 'newChildTopic'
+			}
+		});
+	},
+
 	//主题详情
-	issuesItemClick: function(sender, record, item, index, e, eOpts){
+	loadTopicAbstract: function(sender, record, item, index, e, eOpts){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
 		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
 		var discuss = IssuesTreepanel.getStore().config.discuss;
-		var key = 'tab' + record.get('id');
+		var key = 'tab' + 'projectdiscussion' + discuss;
 		var tab = this.lookupReference(key);
 		if (tab == null) {
 			tab = centerTabPanel.add({
@@ -40,29 +51,82 @@ Ext.define('ITPAR.view.main.MainController', {
 			});
 		}
 		centerTabPanel.setActiveTab(tab);
+
+		var topicDetails = tab.lookupReference('topicDetails');
+		tab.remove(topicDetails, true);
+
+		Ext.Ajax.request({
+			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			params: {
+				type: 8,
+				topic: record.id
+			},
+			methods: 'POST',
+
+			success: function (response, opts) {
+				var data = Ext.decode(response.responseText);
+				console.log(data);
+
+				tab.add({
+					region: 'north',
+					reference: 'topicDetails',
+					margin: '10 10 10 10',
+					html: '<h1  style="text-align:center">主题详情</h1>' +
+					'<p style="text-indent:2em"> ' + data.topics.abstractt + '</p>'
+				});
+			},
+
+			failure: function (response, opts) {
+				console.log('server-side failure with status code ' + response.status);
+			}
+		});
+
 	},
 
-	//请求开发沟通一级主题
+	//开发沟通
 	projectDiscussion: function(record){
-		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
-
-		var issuesstore =  Ext.create('ITPAR.store.ProjectDiscussionIssuesTreeStore');
-		issuesstore.config.discuss = record.get('id');
-		issuesstore.getModel().proxy.setExtraParams({
-			type: 6,
-			discuss: record.get('id')
-		});
-		issuesstore.load();
-
-		IssuesTreepanel.setStore(issuesstore);
+		this.loadIssuesTreeStore(record);
 
 		this.collapseNavTree();
 		this.showIssuesTree();
 		this.reLayoutCenterTabPanel("IssuesShow");
+
+		this.addProjectDiscussionToTab(record);
 	},
 
-	//请求二级列表
-	issuesItemExpand: function (sender, eOpts) {
+	addProjectDiscussionToTab: function(record){
+		var centerTabPanel = this.lookupReference('center-tabpanel');
+		var key = 'tab' + 'projectdiscussion' + record.get('id');
+		var tab = this.lookupReference(key);
+		if (tab == null) {
+			tab = centerTabPanel.add({
+				xtype: 'projectdiscussion',
+				reference: key,
+				config: {
+					//topic: -1,
+					discuss: record.get('id')
+				}
+			});
+		}
+		centerTabPanel.setActiveTab(tab);
+	},
+
+	//请求开发沟通一级主题
+	loadIssuesTreeStore: function(record){
+		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
+
+		var	issuesStore =  Ext.create('ITPAR.store.ProjectDiscussionIssuesTreeStore');
+		issuesStore.config.discuss = record.get('id');
+		issuesStore.getModel().proxy.setExtraParams({
+			type: 6,
+			discuss: record.get('id')
+		});
+		issuesStore.load();
+		IssuesTreepanel.setStore(issuesStore);
+	},
+
+	//请求开发沟通二级列表
+	loadIssuesTreeChildNode: function (sender, eOpts) {
 		if(sender.id != 'root'){
 			var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
 			var issuesStore = IssuesTreepanel.getStore();
@@ -76,14 +140,14 @@ Ext.define('ITPAR.view.main.MainController', {
 
 	projectShow: function(record){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		var key = 'tab' + record.get('id');
+		var key = 'tab' + 'projectShow' + record.get('id');
 		var tab = this.lookupReference(key);
 		if (tab == null) {
 			tab = centerTabPanel.add({
 				xtype: 'projectshow',
 				reference: key,
 				config: {
-					exhibit: record.id
+					exhibit: record.get('id')
 				}
 			});
 		}

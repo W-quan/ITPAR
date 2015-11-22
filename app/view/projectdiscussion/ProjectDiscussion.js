@@ -30,10 +30,17 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussion', {
 	},
 
 	listeners: {
-		render: 'abstractAnddocShow'
+		render: 'docGridsShow'
 	},
 
 	items: [{
+		region: 'north',
+		margin: '10 10 10 10',
+		reference: 'topicDetails',
+
+		html: '<h1  style="text-align:center">主题详情</h1>' +
+				'<p style="text-align:center"> 点击右边主题查看主题详情 </p>'
+	},{
 		region: 'center'
 	}]
 });

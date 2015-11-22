@@ -10,7 +10,6 @@ Ext.define('ITPAR.model.ProjectDiscussionIssuesModel', {
 		{name: 'text', mapping: 'title'}
 	],
 
-
 	proxy: {
 		type: 'ajax',
 		url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',

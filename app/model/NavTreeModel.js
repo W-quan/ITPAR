@@ -9,6 +9,7 @@ Ext.define('ITPAR.model.NavTreeModel', {
 		{name: 'text', mapping: 'title'}
 	],
 
+	idProperty:'NavTreeModelId',
 
 	proxy: {
 		type: 'ajax',

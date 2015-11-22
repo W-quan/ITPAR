@@ -26,5 +26,14 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButtonController', {
 			xtype: 'newprojectshow'
 		});
 		centerPanel.setActiveTab(tab);
+	},
+
+	newChildTopic: function(){
+		var centerPanel = Ext.getCmp('center-tabpanel');
+		var tab = centerPanel.add({
+			xtype: 'newchildtopic'
+		});
+		centerPanel.setActiveTab(tab);
+
 	}
 });
