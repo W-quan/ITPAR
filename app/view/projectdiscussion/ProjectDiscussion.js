@@ -25,8 +25,7 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussion', {
 	layout: 'border',
 
 	config:{
-		topic: undefined,
-		discuss: undefined
+		discuss: null
 	},
 
 	listeners: {
@@ -37,6 +36,10 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussion', {
 		region: 'north',
 		margin: '10 10 10 10',
 		reference: 'topicDetails',
+		config: {
+			topicId: -1,
+			topicAbstract: '项目开发沟通'
+		},
 
 		html: '<h1  style="text-align:center">主题详情</h1>' +
 				'<p style="text-align:center"> 点击右边主题查看主题详情 </p>'

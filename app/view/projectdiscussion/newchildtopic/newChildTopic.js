@@ -1,5 +1,5 @@
 Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
-	extend: "Ext.container.Container",
+	extend: "Ext.form.Panel",
 
 	requires: [
 		"ITPAR.view.projectdiscussion.newchildtopic.newChildTopicController",
@@ -36,14 +36,20 @@ Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
 		items: [{
 			xtype: 'textfield',
 			fieldLabel: '父主题',
-			name: 'title'
+			reference: 'parentTopicAbstract'
 		}, {
 			xtype: 'textfield',
+			name: 'topic',
+			reference: 'parentTopicId',
+			hidden: true
+		},{
+			xtype: 'textfield',
 			fieldLabel: '子主题名称',
-			name: 'abstractt'
+			name: 'title'
 		}, {
 			xtype: 'textarea',
 			fieldLabel: '主题内容',
+			name: 'abstractt',
 			height: 180
 		}],
 
@@ -53,7 +59,7 @@ Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
 			margin: '80 30 0 0',
 			scope: this,
 			listeners: {
-				click: 'newProjectDiscussionSubmit'
+				click: 'newChildTopicSubmit'
 			}
 		}, {
 			text: '取消',

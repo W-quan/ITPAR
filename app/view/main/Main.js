@@ -3,6 +3,12 @@ Ext.define('ITPAR.view.main.Main', {
 	xtype: 'app-main',
 	id: 'appMain',
 
+	requires: [
+		'ITPAR.store.NavTreeStore',
+		'ITPAR.view.main.MainController',
+		'ITPAR.view.main.MainModel'
+	],
+
 	controller: 'main',
 	viewModel: 'main',
 	plugins: 'viewport',
@@ -34,7 +40,7 @@ Ext.define('ITPAR.view.main.Main', {
 		xtype: 'treepanel',
 		reference: 'NavTreePanel',
 		id: 'NavTreePanel',
-		title: 'tree',
+		title: '导航',
 		useArrows: true,
 		store: Ext.create('ITPAR.store.NavTreeStore'),
 
@@ -42,7 +48,6 @@ Ext.define('ITPAR.view.main.Main', {
 
 		titleCollapse: true,
 		listeners: {
-			//select: 'onNavTreeItemClick',
 			beforeexpand: 'hiddenIssuesTree',
 			itemclick: 'onNavTreeItemClick',
 			beforedestroy: function(){
@@ -65,16 +70,11 @@ Ext.define('ITPAR.view.main.Main', {
 
 		xtype: 'tabpanel',
 		reference: 'center-tabpanel',
-		id: 'center-tabpanel'
+		id: 'center-tabpanel',
 
-		//items: [{
-		//	xtype: 'projectdiscussion'
-		//}, {
-		//	xtype: 'newprojectshow'
-		//}, {
-		//	xtype: 'newprojectdiscussion'
-		//}]
-
+		listeners: {
+			tabchange: 'centerTabpanelChange'
+		}
 	}, {
 		region: 'east',
 		collapsible: true,
@@ -87,6 +87,7 @@ Ext.define('ITPAR.view.main.Main', {
 		},
 		margin: '10 0 0 0',
 
+		title: '项目开发沟通',
 		hidden: true,
 		xtype: 'treepanel',
 		reference: 'ProjectDiscussionIssuesTree',
@@ -96,8 +97,7 @@ Ext.define('ITPAR.view.main.Main', {
 
 		listeners: {
 			beforeitemexpand: 'loadIssuesTreeChildNode',
-			itemclick: 'loadTopicAbstract',
-			select: 'addMenuToNewButton'
+			itemclick: 'loadTopicAbstract'
 		}
 
 	}, {

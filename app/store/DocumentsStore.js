@@ -16,7 +16,7 @@ Ext.define('ITPAR.store.DocumentsStore', {
 		actionMethods: {create: 'POST', read: 'POST', update: 'POST', destroy: 'POST'},
 		reader: {
 			type: 'json',
-			root: 'docinfo'
+			rootProperty: 'docinfo'
 		}
 	}
 });

@@ -23,14 +23,57 @@ Ext.define('ITPAR.view.main.MainController', {
 		}
     },
 
-	addMenuToNewButton: function(){
+	centerTabpanelChange: function(tabPanel, newCard, oldCard, eOpts){
+		var oldCardTitle;
+		var newCardTitle = newCard.getTitle();
+		if(oldCard){
+			oldCardTitle = oldCard.getTitle();
+		}
+		
+		if(newCardTitle == '项目沟通' && oldCardTitle != '项目沟通'){
+			this.addMenuToNewButton();
+		}
+		if(newCardTitle != '项目沟通' && oldCardTitle == '项目沟通'){
+			this.removeMenufromNewButton();
+		}
+		if(newCardTitle == '新建子主题'){
+			this.setNewChildTopicInfo(newCard, oldCard);
+		}
+	},
+
+	//设置新建子主题的夫主题内容和id
+	setNewChildTopicInfo: function (newCard, oldCard) {
+		var parentTopicAbstract = newCard.lookupReference('parentTopicAbstract');
+		var parentTopicId= newCard.lookupReference('parentTopicId');
+
+		var topicDetails = oldCard.lookupReference('topicDetails');
+
+		parentTopicAbstract.setValue(topicDetails.config.topicAbstract);
+		parentTopicId.setValue(topicDetails.config.topicId);
+	},
+
+	//添加和删除新建主题菜单
+	removeMenufromNewButton: function () {
+		var newtopicmenu = Ext.getCmp('newTopicMenu');
 		var newbutton = Ext.getCmp('appHeader_newbutton');
-		newbutton.getMenu().add({
-			text: '新建子主题',
-			listeners: {
-				click: 'newChildTopic'
-			}
-		});
+		if(newtopicmenu != null){
+			var newbutton = Ext.getCmp('appHeader_newbutton');
+			newbutton.getMenu().remove(newtopicmenu, true);
+		}
+	},
+	
+	addMenuToNewButton: function () {
+		var newtopicmenu = Ext.getCmp('newTopicMenu');
+		var newbutton = Ext.getCmp('appHeader_newbutton');
+		if(newtopicmenu == null){
+			newbutton.getMenu().add({
+				text: '新建子主题',
+				id: 'newTopicMenu',
+				listeners: {
+					click: 'newChildTopic'
+				}
+			});
+		}
 	},
 
 	//主题详情
@@ -71,6 +114,10 @@ Ext.define('ITPAR.view.main.MainController', {
 					region: 'north',
 					reference: 'topicDetails',
 					margin: '10 10 10 10',
+					config: {
+						topicId: data.topics.id,
+						topicAbstract: data.topics.abstractt
+					},
 					html: '<h1  style="text-align:center">主题详情</h1>' +
 					'<p style="text-indent:2em"> ' + data.topics.abstractt + '</p>'
 				});
@@ -174,11 +221,6 @@ Ext.define('ITPAR.view.main.MainController', {
 		var NavTreepanel = this.lookupReference('NavTreePanel');
 		NavTreepanel.setCollapsed(true);
 	},
-
-	//expandNavTree: function(){
-	//	var NavTreepanel = this.lookupReference('NavTreePanel');
-	//	NavTreepanel.setCollapsed(false);
-	//},
 
 	showIssuesTree: function(){
 		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
