@@ -9,7 +9,7 @@ Ext.define('ITPAR.view.main.MainController', {
 	],
 
 	onNavTreeItemClick: function(sender, record, item, index, e, eOpts){
-		var store = Ext.getCmp('NavTreePanel').getStore();
+		//var store = Ext.getCmp('NavTreePanel').getStore();
 		switch (record.parentNode.get('id')){
 			case -1:
 				this.projectShow(record);
@@ -20,8 +20,29 @@ Ext.define('ITPAR.view.main.MainController', {
 			case -3:
 				this.myProject();
 				break;
+			case -4:
+				this.myProjectDiscussion(record);
+				break;
+			case -5:
+				break;
 		}
     },
+
+	myProjectDiscussion: function (record) {
+		var centerTabPanel = this.lookupReference('center-tabpanel');
+		var key = 'tab' + 'myProjectShow' + record.get('id');
+		var tab = this.lookupReference(key);
+		if (tab == null) {
+			tab = centerTabPanel.add({
+				xtype: 'myprojectdiscussion',
+				reference: key,
+				config: {
+					discussId: record.get('id')
+				}
+			});
+		}
+		centerTabPanel.setActiveTab(tab);
+	},
 
 	centerTabpanelChange: function(tabPanel, newCard, oldCard, eOpts){
 		var oldCardTitle;

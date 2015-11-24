@@ -2,7 +2,7 @@
  * Created by wzq on 15-10-22.
  */
 Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.panel.Panel',
 
     requires: [
 	    'Ext.form.Panel',
@@ -23,6 +23,7 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 
 	margin: '10 20 10 20',
 	autoScroll: true,
+	closable: true,
 
 	title: '新建项目沟通',
 

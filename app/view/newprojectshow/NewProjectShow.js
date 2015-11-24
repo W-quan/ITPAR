@@ -2,7 +2,7 @@
  * Created by wzq on 15-10-22.
  */
 Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
-    extend: 'Ext.Container',
+    extend: 'Ext.panel.Panel',
 
     requires: [
 	    'Ext.form.Panel',
@@ -25,6 +25,7 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 
 	margin: '10 00 10 20',
 	autoScroll: true,
+	closable: true,
 
 	title: '新建项目展示',
 

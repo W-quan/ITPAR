@@ -51,6 +51,11 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 
 				success: function (form, action) {
 					Ext.Msg.alert('新建项目沟通成功');
+
+					var NavTreePanel = Ext.getCmp('NavTreePanel');
+					var store = NavTreePanel.getStore();
+					store.load();
+
 					form.reset();
 				},
 				failure: function (form, action) {

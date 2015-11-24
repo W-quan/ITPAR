@@ -13,27 +13,32 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButtonController', {
     },
 
 	newProjectDiscussion: function () {
+		var appmain = Ext.getCmp('appMain');
 		var centerPanel = Ext.getCmp('center-tabpanel');
-		var tab = centerPanel.add({
-			xtype: 'newprojectdiscussion'
-		});
-		centerPanel.setActiveTab(tab);
+		var newprojectdiscussion= appmain.lookupReference('newProjectDiscussion');
+		if(newprojectdiscussion == null){
+			newprojectdiscussion = centerPanel.add({
+				xtype: 'newprojectdiscussion',
+				reference: 'newProjectDiscussion'
+			});
+		}
+		centerPanel.setActiveTab(newprojectdiscussion);
 	},
 
 	newProjectShow: function(){
+		var appmain = Ext.getCmp('appMain');
 		var centerPanel = Ext.getCmp('center-tabpanel');
-		var tab = centerPanel.add({
-			xtype: 'newprojectshow'
-		});
-		centerPanel.setActiveTab(tab);
+		var newprojectshow = appmain.lookupReference('newProjectShow');
+		if(newprojectshow == null){
+			newprojectshow = centerPanel.add({
+				xtype: 'newprojectshow',
+				reference: 'newProjectShow'
+			});
+		}
+		centerPanel.setActiveTab(newprojectshow);
 	},
 
 	newChildTopic: function(){
-		//var centerPanel = Ext.getCmp('center-tabpanel');
-		//var tab = centerPanel.add({
-		//	xtype: 'newchildtopic'
-		//});
-		//centerPanel.setActiveTab(tab);
 		Ext.create({
 			xtype: 'newchildtopic'
 		}).show();
