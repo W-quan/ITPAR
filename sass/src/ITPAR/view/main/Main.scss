@@ -5,3 +5,7 @@
 body.x-border-layout-ct, div.x-border-layout-ct{
   background-color: #FFFFFF;
 }
+
+.x-window-header-title-default > .x-title-text-default::after{
+  content: ""
+}

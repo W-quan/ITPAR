@@ -23,7 +23,7 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDoc', {
 	controller: 'newdoc',
 
 	width: 600,
-	height: 280,
+	height: 400,
 
 	modal: true,
 
@@ -38,6 +38,10 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDoc', {
 		},
 		reference: 'newdocform',
 
+		defaults: {
+			margin: '10 20 0 20'
+		},
+
 		items: [{
 			xytpe: 'textfield',
 			name: 'discuss',
@@ -50,7 +54,8 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDoc', {
 		}, {
 			xtype: 'textarea',
 			fieldLabel: '文档内容描述',
-			name: 'abstractt'
+			name: 'abstractt',
+			height: 150
 		}, {
 			xtype: 'fileuploadfield',
 			name: 'doc',
@@ -61,6 +66,7 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDoc', {
 		buttonAlign: 'center',
 		buttons: [{
 			text: '提交',
+			margin: '30 30 0 0',
 			listeners: {
 				click: 'newDocSubmit'
 			}
@@ -70,6 +76,5 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDoc', {
 				click: 'closeWindows'
 			}
 		}]
-
 	}]
 });

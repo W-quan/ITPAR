@@ -1,5 +1,5 @@
 Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
-	extend: "Ext.form.Panel",
+	extend: "Ext.window.Window",
 
 	requires: [
 		"ITPAR.view.projectdiscussion.newchildtopic.newChildTopicController",
@@ -13,28 +13,39 @@ Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
 		type: "projectdiscussion-newchildtopic-newchildtopic"
 	},
 
-	margin: '10 30 10 30',
-	autoScroll: true,
 	closable: true,
 
+	width: 680,
+	height: 420,
+
+	//背景不可编辑
+	modal: true,
+
 	title: '新建子主题',
+
+	listeners: {
+		beforeshow: 'setParentTopicInfo'
+	},
 
 	items: [{
 		html: '<h1  style="text-align:center">新建子主题</h1>'
 	}, {
 		xtype: 'form',
+		reference: 'newChildTopicForm',
 
 		layout: {
 			type: 'vbox',
 			align: 'stretch'
 		},
+		margin: '10 10 10 10',
 
 		defaults: {
-			margin: '10 0 0 0'
+			margin: '10 20 0 20'
 		},
 
 		items: [{
 			xtype: 'textfield',
+			//xtype: 'displayfield',
 			fieldLabel: '父主题',
 			reference: 'parentTopicAbstract'
 		}, {
@@ -56,15 +67,15 @@ Ext.define("ITPAR.view.projectdiscussion.newchildtopic.newChildTopic", {
 		buttonAlign: 'center',
 		buttons: [{
 			text: '提交',
-			margin: '80 30 0 0',
-			scope: this,
+			margin: '40 30 0 0',
 			listeners: {
 				click: 'newChildTopicSubmit'
 			}
 		}, {
 			text: '取消',
-			scope: this
+			listeners: {
+				click: 'closeWindows'
+			}
 		}]
 	}]
-})
-;
+});

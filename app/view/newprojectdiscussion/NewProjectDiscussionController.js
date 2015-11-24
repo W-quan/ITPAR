@@ -24,7 +24,23 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 	},
 
 	newProjectDiscussionSubmit: function(){
-		var form = this.getView().getForm();
+		var radiogroup = this.lookupReference('radiogroup');
+		var someIdTextarea = this.lookupReference('someIdTextarea');
+		var grant = this.lookupReference('grant');
+
+		var value = radiogroup.getChecked();
+		if (value[0].inputValue == 'all') {
+			grant.setValue('all');
+		}else {
+			if(someIdTextarea.getValue() == '授权用户的ID号,多个用户用空格分开'){
+				grant.setValue('');
+			}else {
+				grant.setValue(someIdTextarea.getValue());
+			}
+		}
+
+		var form = this.lookupReference('newprojectdiscussionform').getForm();
+		//TODO 添加效验及多余的字段别提交
 		if (form.isValid()) {
 			form.submit({
 				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
@@ -34,11 +50,11 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 				},
 
 				success: function (form, action) {
-					//Ext.Msg.alert('注册成功', '你的ID号是:' + action.result.user.id + ',ID号是你登陆时的身份凭证');
+					Ext.Msg.alert('新建项目沟通成功');
 					form.reset();
 				},
 				failure: function (form, action) {
-					Ext.Msg.alert('注册失败', action.result.message);
+					Ext.Msg.alert('新建项目沟通失败');
 				}
 			});
 		}

@@ -36,41 +36,44 @@ Ext.define('ITPAR.view.main.MainController', {
 		if(newCardTitle != '项目沟通' && oldCardTitle == '项目沟通'){
 			this.removeMenufromNewButton();
 		}
-		if(newCardTitle == '新建子主题'){
-			this.setNewChildTopicInfo(newCard, oldCard);
-		}
-	},
-
-	//设置新建子主题的夫主题内容和id
-	setNewChildTopicInfo: function (newCard, oldCard) {
-		var parentTopicAbstract = newCard.lookupReference('parentTopicAbstract');
-		var parentTopicId= newCard.lookupReference('parentTopicId');
-
-		var topicDetails = oldCard.lookupReference('topicDetails');
-
-		parentTopicAbstract.setValue(topicDetails.config.topicAbstract);
-		parentTopicId.setValue(topicDetails.config.topicId);
 	},
 
 	//添加和删除新建主题菜单
 	removeMenufromNewButton: function () {
-		var newtopicmenu = Ext.getCmp('newTopicMenu');
 		var newbutton = Ext.getCmp('appHeader_newbutton');
+
+		var newtopicmenu = Ext.getCmp('newTopicMenu');
 		if(newtopicmenu != null){
-			var newbutton = Ext.getCmp('appHeader_newbutton');
 			newbutton.getMenu().remove(newtopicmenu, true);
+		}
+
+		var newdocmenu = Ext.getCmp('newDocMenu');
+		if(newdocmenu == null){
+			newbutton.getMenu().remove(newdocmenu, true);
 		}
 	},
 	
 	addMenuToNewButton: function () {
-		var newtopicmenu = Ext.getCmp('newTopicMenu');
 		var newbutton = Ext.getCmp('appHeader_newbutton');
+
+		var newtopicmenu = Ext.getCmp('newTopicMenu');
 		if(newtopicmenu == null){
 			newbutton.getMenu().add({
 				text: '新建子主题',
 				id: 'newTopicMenu',
 				listeners: {
 					click: 'newChildTopic'
+				}
+			});
+		}
+
+		var newdocmenu = Ext.getCmp('newDocMenu');
+		if(newdocmenu == null){
+			newbutton.getMenu().add({
+				text: '发布新文档',
+				id: 'newDocMenu',
+				listeners: {
+					click: 'newDoc'
 				}
 			});
 		}

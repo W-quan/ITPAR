@@ -36,6 +36,8 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 		    align: 'stretch'
 	    },
 
+	    reference: 'newprojectdiscussionform',
+
 	    items: [{
 		    xtype: 'textfield',
 		    fieldLabel: '项目名称',
@@ -65,10 +67,14 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussion', {
 	    },{
 		    xtype: 'textarea',
 		    reference: 'someIdTextarea',
-		    name: 'grantt',
 			margin: '0 0 0 105',
 		    disabled: true,
 		    emptyText: '授权用户的ID号,多个用户用空格分开'
+	    },{
+		    xtype: 'textfield',
+		    reference: 'grant',
+		    name: 'grantt',
+		    hidden: true
 	    }],
 
 	    buttonAlign: 'center',

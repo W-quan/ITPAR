@@ -23,13 +23,13 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 	frame: true,
 	style: 'border-color: #cecece',
 
-	tools: [{
-		xtype: 'button',
-		text: '发布新文档',
-		listeners: {
-			click: 'onNewDocButtonClick'
-		}
-	}],
+	//tools: [{
+	//	xtype: 'button',
+	//	text: '发布新文档',
+	//	listeners: {
+	//		click: 'onNewDocButtonClick'
+	//	}
+	//}],
 
 	listeners: {
 		render: 'docgridsShow'

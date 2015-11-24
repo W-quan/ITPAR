@@ -29,11 +29,19 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButtonController', {
 	},
 
 	newChildTopic: function(){
-		var centerPanel = Ext.getCmp('center-tabpanel');
-		var tab = centerPanel.add({
+		//var centerPanel = Ext.getCmp('center-tabpanel');
+		//var tab = centerPanel.add({
+		//	xtype: 'newchildtopic'
+		//});
+		//centerPanel.setActiveTab(tab);
+		Ext.create({
 			xtype: 'newchildtopic'
-		});
-		centerPanel.setActiveTab(tab);
+		}).show();
+	},
 
+	newDoc: function () {
+		Ext.create({
+			xtype: 'newdoc'
+		}).show();
 	}
 });
