@@ -54,6 +54,11 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowbasic.MyProjec
 
 				success: function (form, action) {
 					Ext.Msg.alert('成功', '更新项目展示基本信息成功');
+
+					//刷新列表
+					var NavTreePanel = Ext.getCmp('NavTreePanel');
+					var store = NavTreePanel.getStore();
+					store.load();
 				},
 				failure: function (form, action) {
 					Ext.Msg.alert('失败', '新建项目展示基本信息失败');

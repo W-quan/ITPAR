@@ -27,13 +27,13 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDocController', {
 			    },
 
 			    success: function (form, action) {
-				    Ext.Msg.alert('发布成功');
+				    Ext.Msg.alert('成功', '发布文档成功');
 				    t.refreshDocgrids(projectdiscussion);
 				    t.closeWindows();
 			    },
 
 			    failure: function (form, action) {
-				    Ext.Msg.alert('发布失败');
+				    Ext.Msg.alert('失败','发布文档失败');
 			    }
 		    });
 	    }

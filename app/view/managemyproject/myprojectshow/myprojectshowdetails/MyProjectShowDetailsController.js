@@ -32,45 +32,26 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 		}
 	},
 
-	//TODO 提交更新失败后, filefield异常,不能设置disabled属性
 	whichImage: function () {
 		var radiogroup = this.lookupReference('radiogroup');
-		var image1 = this.lookupReference('image1');
-		var image2 = this.lookupReference('image2');
-		var image3 = this.lookupReference('image3');
+		var image = this.lookupReference('image');
 		var which = this.lookupReference('which');
 
 		var value = radiogroup.getChecked();
 		if(value.length == 0){
-			//image1.setDisabled(false);
-			//image2.setDisabled(false);
-			//image3.setDisabled(false);
-			//which.setValue('');
+			image.setDisabled(true);
+			which.setValue('');
 		}else {
+			image.setDisabled(false);
 			switch (value[0].inputValue){
 				case 'image1':
-					image1.setDisabled(false);
-					image2.setDisabled(true);
-					image3.setDisabled(true);
 					which.setValue('1');
 					break;
 				case 'image2':
-					image1.setDisabled(true);
-					image2.setDisabled(false);
-					image3.setDisabled(true);
 					which.setValue('2');
 					break;
 				case 'image3':
-					image1.setDisabled(true);
-					image2.setDisabled(true);
-					image3.setDisabled(false);
 					which.setValue('3');
-					break;
-				default:
-					image1.setDisabled(false);
-					image2.setDisabled(false);
-					image3.setDisabled(false);
-					which.setValue('');
 					break;
 			}
 		}

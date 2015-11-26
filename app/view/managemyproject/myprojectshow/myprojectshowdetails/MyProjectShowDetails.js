@@ -96,24 +96,10 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 			hidden: true
 		},{
 			xtype: 'filefield',
-			reference: 'image1',
+			reference: 'image',
 			fieldLabel: '图片',
-			name: 'image1',
+			name: 'image',
 			disabled: true,
-			buttonText: '选择'
-		},{
-			xtype: 'filefield',
-			reference: 'image2',
-			fieldLabel: '图片',
-			name: 'image1',
-			disabled: true,
-			buttonText: '选择'
-		},{
-			xtype: 'filefield',
-			reference: 'image3',
-			name: 'image3',
-			disabled: true,
-			fieldLabel: '图片',
 			buttonText: '选择'
 		}],
 
@@ -127,6 +113,5 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 				background: '#3A9619'
 			}
 		}]
-
 	}]
 });
