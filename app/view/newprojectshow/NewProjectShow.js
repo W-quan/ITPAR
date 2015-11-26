@@ -20,21 +20,27 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
     viewModel: {
         type: 'newprojectshow'
     },
-
     controller: 'newprojectshow',
 
-	margin: '10 00 10 20',
+	margin: '10 00 10 10',
 	autoScroll: true,
 	closable: true,
 
 	title: '新建项目展示',
 
+	config: {
+		projectshowId: null
+	},
+
     items: [{
 	    html: '<h1  style="text-align:center">新建项目展示</h1>'
     },{
         xtype: 'form',
+	    reference: 'newProjeceShowBasicForm',
 	    title: '基本信息',
 
+	    frame: true,
+	    style: 'border-color: #cecece',
 	    margin: '00 30 10 20',
 	    layout: {
 		    type: 'vbox',
@@ -42,17 +48,16 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 	    },
 
 	    defaults: {
-		    margin: '10 0 0 10'
+		    margin: '10 10 0 10'
 	    },
 	    items: [{
 		    xtype: 'textfield',
 		    fieldLabel: '项目名称',
-		    name: 'projectname'
+		    name: 'title'
 	    }, {
 		    xtype: 'textarea',
 		    fieldLabel: '项目简介',
-		    name: 'projectIntroduction'
-		    //height: 100
+		    name: 'abstractt'
 	    },{
 		    xtype: 'radiogroup',
 		    reference: 'radiogroup',
@@ -68,52 +73,77 @@ Ext.define('ITPAR.view.newprojectshow.NewProjectShow', {
 		    }],
 
 		    listeners: {
-			    change: 'setTextAreaEnable'
+			    change: 'setTextAreaState'
 		    }
 	    },{
 		    xtype: 'textarea',
 		    reference: 'someIdTextarea',
 		    height:　'40',
-		    margin: '0 0 0 115',
+		    margin: '0 10 0 115',
 		    disabled: true,
 		    emptyText: '授权用户的ID号,多个用户用空格分开'
+	    },{
+		    xtype: 'textfield',
+		    name: 'grantt',
+		    reference: 'grant',
+		    hidden: true
 	    }],
 
 	    buttons: [{
-		    text: '提交'
+		    text: '提交',
+		    margin: '0 10 0 0',
+		    listeners: {
+			    click: 'newProjectShowBasicInfoSubmit'
+		    }
 	    }]
     },{
 	    xtype: 'form',
+	    reference: 'newProjeceShowDetailsForm',
+
 	    title: '项目详细信息',
 	    margin: '00 30 10 20',
+	    frame: true,
+	    style: 'border-color: #cecece',
 	    layout: {
 		    type: 'vbox',
 		    align: 'stretch'
 	    },
 
 	    defaults: {
-		    margin: '10 0 0 10'
+		    margin: '10 10 0 10'
 	    },
 	    items: [{
+		    xtype: 'textfield',
+		    name: 'exhitbit',
+		    reference: 'exhitbit',
+		    hidden: true
+	    },{
 		    xtype: 'textarea',
-		    fieldLabel: '项目详细信息'
+		    fieldLabel: '项目详细信息',
+		    name: 'abstractt'
 	    },{
 		    xtype: 'filefield',
 		    fieldLabel: '图片',
-		    name: 'photo',
+		    name: 'image1',
 		    buttonText: '选择'
 	    },{
 		    xtype: 'filefield',
+		    name: 'image2',
 		    fieldLabel: '图片',
 		    buttonText: '选择'
 	    },{
 		    xtype: 'filefield',
+		    name: 'image3',
 		    fieldLabel: '图片',
 		    buttonText: '选择'
 	    }],
 
 	    buttons: [{
-		    text: '提交本段信息'
+		    text: '提交本段信息',
+		    margin: '0 10 0 0',
+		    listeners: {
+			    click: 'newProjectShowDetailsInfoSubmit'
+		    }
 	    }]
     }]
 });

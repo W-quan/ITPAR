@@ -10,6 +10,7 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDocController', {
      */
 
 	newDocSubmit: function () {
+	    var t = this;
 	    var centerPanel = Ext.getCmp('center-tabpanel');
 	    var projectdiscussion = centerPanel.getActiveTab();
 	    var discuss = projectdiscussion.config.discuss;
@@ -27,7 +28,8 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDocController', {
 
 			    success: function (form, action) {
 				    Ext.Msg.alert('发布成功');
-				    form.reset();
+				    t.refreshDocgrids(projectdiscussion);
+				    t.closeWindows();
 			    },
 
 			    failure: function (form, action) {
@@ -36,6 +38,13 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDocController', {
 		    });
 	    }
     },
+
+	//刷新文档列表
+	refreshDocgrids: function (projectdiscussion) {
+		var docgrids = projectdiscussion.lookupReference('docgrids');
+		var store = docgrids.getStore();
+		store.load();
+	},
 
 	closeWindows: function () {
 		var window = this.getView();

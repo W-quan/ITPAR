@@ -10,22 +10,12 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussionController', {
 		//'ITPAR.view.projectdiscussion.docgrids.DocGrids'
 	],
 
-	/**
-	 * Called when the view is created
-	 */
-	init: function () {
-
-	},
-
-	onNewDocButtonClick: function () {
-		Ext.create({xtype: 'newdoc'}).show();
-	},
-
 	docGridsShow: function (projectdiscussion) {
 		var projectdiscussion = this.getView();
 		projectdiscussion.mask('正在加载，请稍候 ...');
 		projectdiscussion.add({
 			xtype: 'docgrids',
+			reference: 'docgrids',
 			config: {
 				discuss: projectdiscussion.config.discuss
 			},

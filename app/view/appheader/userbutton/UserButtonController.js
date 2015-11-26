@@ -18,6 +18,22 @@ Ext.define('ITPAR.view.appheader.userbutton.UserButtonController', {
 		Ext.util.Cookies.clear('id');
 		Ext.util.Cookies.clear('password');
 
+		Ext.Ajax.request({
+			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			params: {
+				type: 22
+			},
+			methods: 'POST',
+
+			success: function (response, opts) {
+				consule.log('登出成功');
+			},
+
+			failure: function (response, opts) {
+				consule.log('登出失败');
+			}
+		});
+
 		var main = Ext.getCmp('appMain');
 		main.destroy();
 

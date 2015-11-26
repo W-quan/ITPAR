@@ -17,7 +17,7 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 	title: '项目文档',
 
 	config: {
-		discuss: undefined
+		discuss: null
 	},
 
 	frame: true,

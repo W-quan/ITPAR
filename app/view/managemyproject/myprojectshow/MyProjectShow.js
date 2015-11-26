@@ -12,5 +12,23 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.MyProjectShow",{
         type: "managemyproject-myprojectshow-myprojectshow"
     },
 
-    html: "Hello, World!!"
+	xtype: 'myprojectshow',
+
+	//margin: '10 00 10 10',
+	autoScroll: true,
+	closable: true,
+
+	title: '我的项目展示',
+
+	config: {
+		projectshowId: null
+	},
+
+	listeners: {
+		beforerender: 'loadMyProjectShowInfo'
+	},
+
+	items: [{
+		html: '<h1  style="text-align:center">我的项目展示</h1>'
+	}]
 });
