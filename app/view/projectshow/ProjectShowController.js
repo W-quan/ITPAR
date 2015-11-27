@@ -14,12 +14,11 @@ Ext.define('ITPAR.view.projectshow.ProjectShowController', {
 		var projectshow = this.getView();
 		projectshow.mask('正在加载，请稍候 ...');
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {type: 2, exhibit: projectshow.config.exhibit},
 			methods: 'POST',
 			success: function(response, opts) {
 				var data = Ext.decode(response.responseText);
-				//console.log(data);
 				projectshow.tpl.overwrite(projectshow.body, data);
 				projectshow.unmask();
 			},

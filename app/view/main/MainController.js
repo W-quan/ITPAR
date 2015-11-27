@@ -42,12 +42,11 @@ Ext.define('ITPAR.view.main.MainController', {
 			});
 		}
 		centerTabPanel.setActiveTab(tab);
-
 	},
 
 	myProjectDiscussion: function (record) {
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		var key = 'tab' + 'myProjectShow' + record.get('id');
+		var key = 'tab' + 'myProjectDiscussion' + record.get('id');
 		var tab = this.lookupReference(key);
 		if (tab == null) {
 			tab = centerTabPanel.add({
@@ -71,7 +70,7 @@ Ext.define('ITPAR.view.main.MainController', {
 		if(newCardTitle == '项目沟通' && oldCardTitle != '项目沟通'){
 			this.addMenuToNewButton();
 		}
-		if(newCardTitle != '项目沟通' && oldCardTitle == '项目沟通'){
+		if(newCardTitle != '项目沟通'){
 			this.removeMenufromNewButton();
 		}
 	},
@@ -86,7 +85,7 @@ Ext.define('ITPAR.view.main.MainController', {
 		}
 
 		var newdocmenu = Ext.getCmp('newDocMenu');
-		if(newdocmenu == null){
+		if(newdocmenu != null){
 			newbutton.getMenu().remove(newdocmenu, true);
 		}
 	},
@@ -140,7 +139,7 @@ Ext.define('ITPAR.view.main.MainController', {
 		tab.remove(topicDetails, true);
 
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {
 				type: 8,
 				topic: record.id

@@ -68,33 +68,35 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 			align: 'stretch'
 		},
 		items: [{
+			reference: 'imageshow'
+		}, {
 			xtype: 'radiogroup',
 			reference: 'radiogroup',
-			fieldLabel: '要更改的图片',
+			fieldLabel: '更改图片',
 			layout: 'hbox',
 			items: [{
 				inputValue: 'image1',
 				boxLabel: '第一张'
 				//checked: true
-			},{
+			}, {
 				inputValue: 'image2',
 				boxLabel: '第二张',
-				margin: '0 0 0 30'
-			},{
+				margin: '0 0 0 90'
+			}, {
 				inputValue: 'image3',
 				boxLabel: '第三张',
-				margin: '0 0 0 30'
+				margin: '0 0 0 90'
 			}],
 
 			listeners: {
 				change: 'whichImage'
 			}
-		},{
+		}, {
 			xtype: 'textfield',
 			name: 'which',
 			reference: 'which',
 			hidden: true
-		},{
+		}, {
 			xtype: 'filefield',
 			reference: 'image',
 			fieldLabel: '图片',

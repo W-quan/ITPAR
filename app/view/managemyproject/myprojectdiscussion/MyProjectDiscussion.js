@@ -67,7 +67,7 @@ Ext.define("ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussion",
 			}],
 
 			listeners: {
-				//change: 'setTextAreaEnable'
+				change: 'setTextAreaState'
 			}
 		},{
 			xtype: 'textarea',

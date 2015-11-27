@@ -21,7 +21,7 @@ Ext.define('ITPAR.view.login.LoginController', {
 		var form = formview.getForm();
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				url: mServerUrl,
 				method: 'POST',
 				params: {
 					type: '4'
@@ -59,13 +59,6 @@ Ext.define('ITPAR.view.login.LoginController', {
 	},
 
 	toMainView: function () {
-		//刷新数据
-		//var NavStore = ITPAR.store.NavTreeStore;
-	    //var	storeProxy = NavStore.getProxy();
-	    //storeProxy.extraParams.type = 5;
-	    //NavStore.load();
-
-		//NavStore.removeAll();
 		//刷新页面
 		var appmain = Ext.getCmp("appMain").destroy();
 		Ext.create({

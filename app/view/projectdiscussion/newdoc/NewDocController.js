@@ -19,7 +19,8 @@ Ext.define('ITPAR.view.projectdiscussion.newdoc.NewDocController', {
 	    var form = formview.getForm();
 	    if (form.isValid()) {
 		    form.submit({
-			    url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			    url: mServerUrl,
+			    //url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
 			    method: 'POST',
 			    params: {
 				    type: '12',

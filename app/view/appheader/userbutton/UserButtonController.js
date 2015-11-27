@@ -19,7 +19,7 @@ Ext.define('ITPAR.view.appheader.userbutton.UserButtonController', {
 		Ext.util.Cookies.clear('password');
 
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {
 				type: 22
 			},

@@ -45,7 +45,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowbasic.MyProjec
 		//TODO 添加效验及多余的字段别提交
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				url: mServerUrl,
 				method: 'POST',
 				params: {
 					type: '19',

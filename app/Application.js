@@ -14,8 +14,7 @@ Ext.define('ITPAR.Application', {
 
 	views: [
 		'ITPAR.view.login.Login',
-		'ITPAR.view.main.Main',
-		'ITPAR.view.welcome.Welcome'
+		'ITPAR.view.main.Main'
 	],
 
 	launch: function () {
@@ -33,7 +32,8 @@ Ext.define('ITPAR.Application', {
 
 	login: function (id, password) {
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			method: 'POST',
 			params: {
 				type: '4',
@@ -82,3 +82,4 @@ var User_Info = {
 	photo: ''
 };
 
+var  mServerUrl = 'http://127.0.0.1:8080/FinalPublishingPlatform/broker';

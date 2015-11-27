@@ -23,14 +23,6 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 	frame: true,
 	style: 'border-color: #cecece',
 
-	//tools: [{
-	//	xtype: 'button',
-	//	text: '发布新文档',
-	//	listeners: {
-	//		click: 'onNewDocButtonClick'
-	//	}
-	//}],
-
 	listeners: {
 		render: 'docgridsShow'
 	},
@@ -55,7 +47,8 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 
 					var form = Ext.create('Ext.form.Panel', {
 						standardSubmit: true,
-						url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+						//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+						url: mServerUrl,
 						method: 'POST'
 					});
 

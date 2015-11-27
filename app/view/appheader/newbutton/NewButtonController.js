@@ -9,7 +9,6 @@ Ext.define('ITPAR.view.appheader.newbutton.NewButtonController', {
      * Called when the view is created
      */
     init: function() {
-
     },
 
 	newProjectDiscussion: function () {

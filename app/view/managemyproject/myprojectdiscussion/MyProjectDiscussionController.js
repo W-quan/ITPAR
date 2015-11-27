@@ -7,7 +7,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 		var myprojectdiscussion = this.getView();
 
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {
 				type: 15,
 				discuss: myprojectdiscussion.config.discussId
@@ -69,7 +70,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 		//TODO 添加效验及多余的字段别提交
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				url: mServerUrl,
 				method: 'POST',
 				params: {
 					type: '16',
@@ -116,7 +118,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 		var thisController = this;
 		var myprojectdiscussion = this.getView();
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {
 				type: 14,
 				discuss: myprojectdiscussion.config.discussId
@@ -134,5 +137,16 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 				Ext.Msg.alert('删除失败');
 			}
 		})
+	},
+
+	setTextAreaState: function () {
+		var radiogroup = this.lookupReference('radiogroup');
+		var someIdTextarea = this.lookupReference('someIdTextarea');
+		var value = radiogroup.getChecked();
+		if (value[0].inputValue == 'some') {
+			someIdTextarea.setDisabled(false);
+		}else{
+			someIdTextarea.setDisabled(true);
+		}
 	}
 });

@@ -8,6 +8,15 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 
 		var abstractt = this.lookupReference('abstractt');
 		abstractt.setValue(data.detail);
+
+		var imageshow = this.lookupReference('imageshow');
+		imageshow.html =
+				'<hr style="color: rgba(206, 206, 206, 0.25)"/>' +
+			    '<div style="margin: 0 auto; text-align: center;">' +
+					'<img src="' + data.image1 + '" alt="img1" width="100px" height="100px" style="margin: 20px"/>' +
+					'<img src="' + data.image2 + '" alt="img2" width="100px" height="100px" style="margin: 20px"/>' +
+					'<img src="' + data.image3 + '" alt="img3" width="100px" height="100px" style="margin: 20px"/>' +
+				'</div>'
 	},
 
 	updateDetailSumbit: function () {
@@ -15,7 +24,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 		var form = this.lookupReference('updateMyProjectShowDtailForm');
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				url: mServerUrl,
 				method: 'POST',
 				params: {
 					type: '20',
@@ -62,7 +72,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 		var form = this.lookupReference('updateMyProjectShowImageForm');
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+				url: mServerUrl,
 				method: 'POST',
 				params: {
 					type: '21',

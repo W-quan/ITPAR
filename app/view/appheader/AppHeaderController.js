@@ -19,7 +19,6 @@ Ext.define('ITPAR.view.appheader.AppHeaderController', {
     },
 
 	addButton: function() {
-		//var loggedIn = localStorage.getItem("ITPARLoggedIn");
 		var loggedIn = User_Info.Logined;
 		var headerPanel = this.getView();
 		if(loggedIn == false){

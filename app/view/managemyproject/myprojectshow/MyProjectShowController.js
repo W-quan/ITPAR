@@ -7,7 +7,8 @@ Ext.define('ITPAR.view.managemyproject.myprojectshow.MyProjectShowController', {
 		var myprojectshow = this.getView();
 
 		Ext.Ajax.request({
-			url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
+			url: mServerUrl,
 			params: {
 				type: 2,
 				exhibit: myprojectshow.config.projectshowId
