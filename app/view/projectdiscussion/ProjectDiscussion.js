@@ -25,7 +25,8 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussion', {
 	layout: 'border',
 
 	config:{
-		discuss: null
+		discuss: null,
+		topicTreeStore: null
 	},
 
 	listeners: {

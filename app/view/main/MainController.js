@@ -69,10 +69,27 @@ Ext.define('ITPAR.view.main.MainController', {
 		
 		if(newCardTitle == '项目沟通' && oldCardTitle != '项目沟通'){
 			this.addMenuToNewButton();
+
+			this.showIssuesTree(true);
+			this.collapseNavTree(true);
+			this.reLayoutCenterTabPanel('IssuesTreeShow');
 		}
 		if(newCardTitle != '项目沟通'){
 			this.removeMenufromNewButton();
 		}
+
+		if(newCardTitle == '项目沟通' && oldCardTitle == '项目沟通'){
+			this.replaceIssuesTreeStroe(newCard);
+		}
+		if(newCardTitle != '项目沟通' && oldCardTitle == '项目沟通'){
+			this.showIssuesTree(false);
+			this.reLayoutCenterTabPanel('IssuesTreeHiddin');
+		}
+	},
+
+	replaceIssuesTreeStroe: function (ProjectDiscussion) {
+		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
+		IssuesTreepanel.setStore(ProjectDiscussion.config.topicTreeStore);
 	},
 
 	//最后一个tab关闭后,不能用centerTabpanelChange方法remove 添加的菜单
@@ -82,6 +99,10 @@ Ext.define('ITPAR.view.main.MainController', {
 		var tab = centerTabPanel.getActiveTab();
 		if(tab == undefined){
 			this.removeMenufromNewButton();
+
+			this.showIssuesTree(false);
+			this.collapseNavTree(false);
+			this.reLayoutCenterTabPanel('IssuesTreeHiddin')
 		}
 	},
 
@@ -129,22 +150,23 @@ Ext.define('ITPAR.view.main.MainController', {
 	//主题详情
 	loadTopicAbstract: function(sender, record, item, index, e, eOpts){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
-		var discuss = IssuesTreepanel.getStore().config.discuss;
-		var key = 'tab' + 'projectdiscussion' + discuss;
-		var tab = this.lookupReference(key);
-		if (tab == null) {
-			tab = centerTabPanel.add({
-				xtype: 'projectdiscussion',
-				reference: key,
-				config: {
-					topic: record.id,
-					discuss: discuss
-				}
-			});
-		}
-		centerTabPanel.setActiveTab(tab);
+		//var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
+		//var discuss = IssuesTreepanel.getStore().config.discuss;
+		//var key = 'tab' + 'projectdiscussion' + discuss;
+		//var tab = this.lookupReference(key);
+		//if (tab == null) {
+		//	tab = centerTabPanel.add({
+		//		xtype: 'projectdiscussion',
+		//		reference: key,
+		//		config: {
+		//			topic: record.id,
+		//			discuss: discuss
+		//		}
+		//	});
+		//}
+		//centerTabPanel.setActiveTab(tab);
 
+		var tab = centerTabPanel.getActiveTab();
 		var topicDetails = tab.lookupReference('topicDetails');
 		tab.remove(topicDetails, true);
 
@@ -182,26 +204,26 @@ Ext.define('ITPAR.view.main.MainController', {
 
 	//开发沟通
 	projectDiscussion: function(record){
-		this.loadIssuesTreeStore(record);
+		var issuesStore = this.loadIssuesTreeStore(record.get('id'));
 
-		this.collapseNavTree();
-		this.showIssuesTree();
-		this.reLayoutCenterTabPanel("IssuesShow");
+		this.collapseNavTree(true);
+		this.showIssuesTree(true);
+		this.reLayoutCenterTabPanel("IssuesTreeShow");
 
-		this.addProjectDiscussionToTab(record);
+		this.addProjectDiscussionToTab(record.get('id'), issuesStore);
 	},
 
-	addProjectDiscussionToTab: function(record){
+	addProjectDiscussionToTab: function(id, issuesStore){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		var key = 'tab' + 'projectdiscussion' + record.get('id');
+		var key = 'tab' + 'projectdiscussion' + id;
 		var tab = this.lookupReference(key);
 		if (tab == null) {
 			tab = centerTabPanel.add({
 				xtype: 'projectdiscussion',
 				reference: key,
 				config: {
-					//topic: -1,
-					discuss: record.get('id')
+					discuss: id,
+					topicTreeStore: issuesStore
 				}
 			});
 		}
@@ -209,17 +231,19 @@ Ext.define('ITPAR.view.main.MainController', {
 	},
 
 	//请求开发沟通一级主题
-	loadIssuesTreeStore: function(record){
+	loadIssuesTreeStore: function(id){
 		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
 
 		var	issuesStore =  Ext.create('ITPAR.store.ProjectDiscussionIssuesTreeStore');
-		issuesStore.config.discuss = record.get('id');
+		issuesStore.config.discuss = id;
 		issuesStore.getModel().proxy.setExtraParams({
 			type: 6,
-			discuss: record.get('id')
+			discuss: id
 		});
 		issuesStore.load();
 		IssuesTreepanel.setStore(issuesStore);
+
+		return issuesStore;
 	},
 
 	//请求开发沟通二级列表
@@ -259,7 +283,7 @@ Ext.define('ITPAR.view.main.MainController', {
 
 	reLayoutCenterTabPanel: function(IssuesTreeStatus){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		if(IssuesTreeStatus == "IssuesShow"){
+		if(IssuesTreeStatus == "IssuesTreeShow"){
 			centerTabPanel.setMargin('10 10 0 10');
 		}else if(IssuesTreeStatus == "IssuesTreeHiddin"){
 			centerTabPanel.setMargin('10 160 0 10');
@@ -267,20 +291,27 @@ Ext.define('ITPAR.view.main.MainController', {
 	},
 
 
-	collapseNavTree: function(){
+	collapseNavTree: function(bool){
 		var NavTreepanel = this.lookupReference('NavTreePanel');
-		NavTreepanel.setCollapsed(true);
+		if(bool){
+			NavTreepanel.setCollapsed(true);
+		}else {
+			NavTreepanel.setCollapsed(false);
+		}
 	},
 
-	showIssuesTree: function(){
+	showIssuesTree: function(bool){
 		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
-		IssuesTreepanel.setHidden(false);
+		if(bool){
+			IssuesTreepanel.setHidden(false);
+		}else {
+			IssuesTreepanel.setHidden(true);
+		}
 	},
 
-	hiddenIssuesTree: function(){
-		var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
-		IssuesTreepanel.setHidden(true);
-
-		this.reLayoutCenterTabPanel("IssuesTreeHiddin")
+	NavTreeExpand: function () {
+		//this.collapseNavTree(false);
+		this.showIssuesTree(false);
+		this.reLayoutCenterTabPanel('IssuesTreeHiddin');
 	}
 });

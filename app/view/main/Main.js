@@ -48,7 +48,7 @@ Ext.define('ITPAR.view.main.Main', {
 
 		titleCollapse: true,
 		listeners: {
-			beforeexpand: 'hiddenIssuesTree',
+			beforeexpand: 'NavTreeExpand',
 			itemclick: 'onNavTreeItemClick',
 			beforedestroy: function(){
 				var NavTreepanel = Ext.getCmp('NavTreePanel');
