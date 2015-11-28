@@ -75,6 +75,16 @@ Ext.define('ITPAR.view.main.MainController', {
 		}
 	},
 
+	//最后一个tab关闭后,不能用centerTabpanelChange方法remove 添加的菜单
+	//所以添加这个方法,判断最后一个tab关闭.remove菜单
+	lastTabClose: function () {
+		var centerTabPanel = this.lookupReference('center-tabpanel');
+		var tab = centerTabPanel.getActiveTab();
+		if(tab == undefined){
+			this.removeMenufromNewButton();
+		}
+	},
+
 	//添加和删除新建主题菜单
 	removeMenufromNewButton: function () {
 		var newbutton = Ext.getCmp('appHeader_newbutton');

@@ -73,7 +73,8 @@ Ext.define('ITPAR.view.main.Main', {
 		id: 'center-tabpanel',
 
 		listeners: {
-			tabchange: 'centerTabpanelChange'
+			tabchange: 'centerTabpanelChange',
+			remove: 'lastTabClose'
 		}
 	}, {
 		region: 'east',
