@@ -4,7 +4,9 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 
     requires: [
         "ITPAR.view.projectdiscussion.docgrids.docGridsController",
-        "ITPAR.view.projectdiscussion.docgrids.docGridsModel"
+        "ITPAR.view.projectdiscussion.docgrids.docGridsModel",
+	    'Ext.form.Panel',
+	    'Ext.form.action.StandardSubmit'
     ],
 
     controller: "projectdiscussion-docgrids-docgrids",
@@ -47,7 +49,6 @@ Ext.define("ITPAR.view.projectdiscussion.docgrids.docGrids",{
 
 					var form = Ext.create('Ext.form.Panel', {
 						standardSubmit: true,
-						//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
 						url: mServerUrl,
 						method: 'POST'
 					});

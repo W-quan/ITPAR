@@ -43,7 +43,6 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 		//TODO 添加效验及多余的字段别提交
 		if (form.isValid()) {
 			form.submit({
-				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
 				url: mServerUrl,
 				method: 'POST',
 				params: {
@@ -51,7 +50,7 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 				},
 
 				success: function (form, action) {
-					Ext.Msg.alert('新建项目沟通成功');
+					Ext.Msg.alert('成功', '新建项目沟通成功');
 
 					var NavTreePanel = Ext.getCmp('NavTreePanel');
 					var store = NavTreePanel.getStore();
@@ -60,7 +59,7 @@ Ext.define('ITPAR.view.newprojectdiscussion.NewProjectDiscussionController', {
 					form.reset();
 				},
 				failure: function (form, action) {
-					Ext.Msg.alert('新建项目沟通失败');
+					Ext.Msg.alert('失败', action.result.message);
 				}
 			});
 		}

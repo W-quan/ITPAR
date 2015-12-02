@@ -26,11 +26,11 @@ Ext.define('ITPAR.view.appheader.userbutton.UserButtonController', {
 			methods: 'POST',
 
 			success: function (response, opts) {
-				consule.log('登出成功');
+				console.log('登出成功');
 			},
 
 			failure: function (response, opts) {
-				consule.log('登出失败');
+				console.log('登出失败');
 			}
 		});
 

@@ -6,8 +6,8 @@ Ext.define('ITPAR.view.projectdiscussion.ProjectDiscussionController', {
 	alias: 'controller.projectdiscussion',
 
 	requires: [
-		'ITPAR.view.projectdiscussion.newdoc.NewDoc'
-		//'ITPAR.view.projectdiscussion.docgrids.DocGrids'
+		'ITPAR.view.projectdiscussion.newdoc.NewDoc',
+		'ITPAR.view.projectdiscussion.docgrids.docGrids'
 	],
 
 	docGridsShow: function (projectdiscussion) {

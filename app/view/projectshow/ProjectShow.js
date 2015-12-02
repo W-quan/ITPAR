@@ -4,6 +4,10 @@
 Ext.define('ITPAR.view.projectshow.ProjectShow', {
     extend: 'Ext.panel.Panel',
 
+	requires: [
+		'ITPAR.view.projectshow.ProjectShowController'
+	],
+
     xtype: 'projectshow',
 
 	config:{
@@ -38,7 +42,8 @@ Ext.define('ITPAR.view.projectshow.ProjectShow', {
 	),
 
 	listeners: {
-		render: 'tplRender'
+		render: 'tplRender',
+		close: 'destroyItself'
 	}
 });
 

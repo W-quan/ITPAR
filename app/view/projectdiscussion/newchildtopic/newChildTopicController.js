@@ -22,14 +22,13 @@ Ext.define('ITPAR.view.projectdiscussion.newchildtopic.newChildTopicController',
 		if(form.isValid()){
 			form.submit({
 				url: mServerUrl,
-				//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
 				method: 'POST',
 				params: {
 					type: '11'
 				},
 
 				success: function (form, action) {
-					Ext.Msg.alert('新建子主题成功');
+					Ext.Msg.alert('成功', '新建子主题成功');
 
 					var ProjectDiscussionIssuesTree = Ext.getCmp('ProjectDiscussionIssuesTree');
 					var store = ProjectDiscussionIssuesTree.getStore();
@@ -42,7 +41,7 @@ Ext.define('ITPAR.view.projectdiscussion.newchildtopic.newChildTopicController',
 					window.destroy();
 				},
 				failure: function (form, action) {
-					Ext.Msg.alert('新建失败', action.result.message);
+					Ext.Msg.alert('失败', '新建子主题失败');
 				}
 			})
 		}

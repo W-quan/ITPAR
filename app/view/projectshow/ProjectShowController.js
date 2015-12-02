@@ -19,6 +19,15 @@ Ext.define('ITPAR.view.projectshow.ProjectShowController', {
 			methods: 'POST',
 			success: function(response, opts) {
 				var data = Ext.decode(response.responseText);
+
+				//添加随机数,使图片地址不同,刷新图片
+				var date = new Date();
+				var random = date.getMilliseconds();
+				for(var i in data.details){
+					data.details[i].image1 += '&time=' + random;
+					data.details[i].image2 += '&time=' + random;
+					data.details[i].image3 += '&time=' + random;
+				}
 				projectshow.tpl.overwrite(projectshow.body, data);
 				projectshow.unmask();
 			},
@@ -28,5 +37,9 @@ Ext.define('ITPAR.view.projectshow.ProjectShowController', {
 				projectshow.unmask();
 			}
 		});
+	},
+
+	destroyItself: function (sender, eOpts) {
+		this.getView().destroy();
 	}
 });

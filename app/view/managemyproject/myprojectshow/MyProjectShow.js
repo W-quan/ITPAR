@@ -14,7 +14,6 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.MyProjectShow",{
 
 	xtype: 'myprojectshow',
 
-	//margin: '10 00 10 10',
 	autoScroll: true,
 	closable: true,
 

@@ -5,7 +5,8 @@ Ext.define('ITPAR.view.main.MainController', {
 
 	requires: [
 		'ITPAR.view.projectshow.ProjectShow',
-		'ITPAR.view.projectdiscussion.ProjectDiscussion'
+		'ITPAR.view.projectdiscussion.ProjectDiscussion',
+		'ITPAR.store.ProjectDiscussionIssuesTreeStore'
 	],
 
 	onNavTreeItemClick: function(sender, record, item, index, e, eOpts){
@@ -150,22 +151,6 @@ Ext.define('ITPAR.view.main.MainController', {
 	//主题详情
 	loadTopicAbstract: function(sender, record, item, index, e, eOpts){
 		var centerTabPanel = this.lookupReference('center-tabpanel');
-		//var IssuesTreepanel = this.lookupReference('ProjectDiscussionIssuesTree');
-		//var discuss = IssuesTreepanel.getStore().config.discuss;
-		//var key = 'tab' + 'projectdiscussion' + discuss;
-		//var tab = this.lookupReference(key);
-		//if (tab == null) {
-		//	tab = centerTabPanel.add({
-		//		xtype: 'projectdiscussion',
-		//		reference: key,
-		//		config: {
-		//			topic: record.id,
-		//			discuss: discuss
-		//		}
-		//	});
-		//}
-		//centerTabPanel.setActiveTab(tab);
-
 		var tab = centerTabPanel.getActiveTab();
 		var topicDetails = tab.lookupReference('topicDetails');
 		tab.remove(topicDetails, true);
@@ -310,7 +295,6 @@ Ext.define('ITPAR.view.main.MainController', {
 	},
 
 	NavTreeExpand: function () {
-		//this.collapseNavTree(false);
 		this.showIssuesTree(false);
 		this.reLayoutCenterTabPanel('IssuesTreeHiddin');
 	}

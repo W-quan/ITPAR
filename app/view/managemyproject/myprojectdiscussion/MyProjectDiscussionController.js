@@ -7,7 +7,6 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 		var myprojectdiscussion = this.getView();
 
 		Ext.Ajax.request({
-			//url: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker',
 			url: mServerUrl,
 			params: {
 				type: 15,
@@ -79,12 +78,12 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 				},
 
 				success: function (form, action) {
-					Ext.Msg.alert('更新项目沟通成功');
+					Ext.Msg.alert('成功', '更新项目沟通成功');
 
 					thisController.reloadNavTreeStore;
 				},
 				failure: function (form, action) {
-					Ext.Msg.alert('更新项目沟通失败');
+					Ext.Msg.alert('失败', '更新项目沟通失败');
 				}
 			});
 		}
@@ -127,14 +126,14 @@ Ext.define('ITPAR.view.managemyproject.myprojectdiscussion.MyProjectDiscussionCo
 			methods: 'POST',
 
 			success: function (response, opts) {
-				Ext.Msg.alert('删除成功');
+				Ext.Msg.alert('成功', '删除成功');
 
 				myprojectdiscussion.destroy();
 				thisController.reloadNavTreeStore();
 			},
 
 			failure: function (response, opts) {
-				Ext.Msg.alert('删除失败');
+				Ext.Msg.alert('失败', '删除失败');
 			}
 		})
 	},

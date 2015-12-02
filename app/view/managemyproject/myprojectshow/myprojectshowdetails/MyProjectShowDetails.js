@@ -77,7 +77,6 @@ Ext.define("ITPAR.view.managemyproject.myprojectshow.myprojectshowdetails.MyProj
 			items: [{
 				inputValue: 'image1',
 				boxLabel: '第一张'
-				//checked: true
 			}, {
 				inputValue: 'image2',
 				boxLabel: '第二张',

@@ -6,7 +6,10 @@ Ext.define('ITPAR.view.main.Main', {
 	requires: [
 		'ITPAR.store.NavTreeStore',
 		'ITPAR.view.main.MainController',
-		'ITPAR.view.main.MainModel'
+		'ITPAR.view.main.MainModel',
+		'ITPAR.view.appheader.AppHeader',
+		'ITPAR.view.footer.Footer',
+		'Ext.container.Viewport'
 	],
 
 	controller: 'main',
