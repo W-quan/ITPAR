@@ -18,9 +18,8 @@ Ext.define('ITPAR.view.appheader.userbutton.UserButton', {
 	controller: 'userbutton',
 
 	margin: '12 0 0 20',
-	//icon: 'resources/images/button/user_icon.png',
-	icon: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker?type=101',
-	//iconCls: { },
+	//icon: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker?type=101',
+	iconCls: 'userphoto',
 	style: ' background: none; border: none',
 	menu:　[{
 		text:　'个人资料'

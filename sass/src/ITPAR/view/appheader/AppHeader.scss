@@ -24,8 +24,12 @@
 .x-btn-icon-left > .x-btn-icon-el-default-small, .x-btn-icon-right > .x-btn-icon-el-default-small{
   width: 20px;
   border-radius: 4px;
-  background-size: 100% 100%;
+  //background-size: 100% 100%;
 }
 .x-btn-icon-el-default-small{
   height: 20px;
+}
+
+.userphoto{
+  background-size: 100% 100%;
 }

@@ -26,7 +26,13 @@ Ext.define('ITPAR.view.appheader.AppHeaderController', {
 			headerPanel.add({xtype: 'loginbutton'});
 		} else{
 			headerPanel.add({xtype: 'newbutton'});
-			headerPanel.add({xtype: 'userbutton'});
+
+			var date = new Date();
+			var time = date.getMilliseconds();
+			headerPanel.add({
+				xtype: 'userbutton',
+				icon: 'http://127.0.0.1:8080/FinalPublishingPlatform/broker?type=101' + '&time=' + time
+			});
 		}
 	}
 });
